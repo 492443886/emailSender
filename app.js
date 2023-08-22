@@ -13,7 +13,7 @@ app.post(baseURI + "/send", async (req, res) => {
     data = req.body
     console.log(data)
     mailSender(data.to, data.subject, data.text)
-    res.send("Email sent")
+    res.status(200).send("Email sent")
   } catch (e) {
     console.log(e)
     res.status(500).send("Email not sent")

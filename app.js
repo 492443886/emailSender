@@ -1,4 +1,5 @@
 const mailSender = require("./mailSender.js")
+const sendEmailSmash = require("./mailSenderSmash.js")
 const express = require("express")
 const app = express()
 const port = 3080
@@ -14,6 +15,18 @@ app.post(baseURI + "/send", async (req, res) => {
     const mailOptions = req.body
     console.log(mailOptions)
     mailSender(mailOptions)
+    res.status(200).send("Email sent")
+  } catch (e) {
+    console.log(e)
+    res.status(500).send("Email not sent")
+  }
+})
+
+app.post(baseURI + "/sendSmash", async (req, res) => {
+  try {
+    const mailOptions = req.body
+    console.log(mailOptions)
+    sendEmailSmash(mailOptions)
     res.status(200).send("Email sent")
   } catch (e) {
     console.log(e)

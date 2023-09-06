@@ -10,9 +10,10 @@ app.use(express.json())
 
 app.post(baseURI + "/send", async (req, res) => {
   try {
-    data = req.body
-    console.log(data)
-    mailSender(data.to, data.subject, data.text)
+    // console.log(req)
+    const mailOptions = req.body
+    console.log(mailOptions)
+    mailSender(mailOptions)
     res.status(200).send("Email sent")
   } catch (e) {
     console.log(e)
